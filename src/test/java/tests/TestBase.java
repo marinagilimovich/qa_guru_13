@@ -1,7 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import config.WebDriverConfig;
+import config.DriverConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -14,17 +14,17 @@ import static helper.AttachmentHelper.*;
 
 public class TestBase {
 
-    static WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+    static config.DriverConfig DriverConfig = ConfigFactory.create(DriverConfig.class, System.getProperties());
 
     @BeforeAll
     public static void setup() {
         Configuration.startMaximized = true;
         addListener("AllureSelenide", new AllureSelenide());
-        Configuration.browser = webDriverConfig.getBrowser();
-        Configuration.browserVersion = webDriverConfig.getBrowserVersion();
+        Configuration.browser = DriverConfig.getBrowser();
+        Configuration.browserVersion = DriverConfig.getBrowserVersion();
 
-        if (webDriverConfig.isRemote()) {
-            Configuration.remote = webDriverConfig.getURL();
+        if (DriverConfig.isRemote()) {
+            Configuration.remote = DriverConfig.getURL();
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);

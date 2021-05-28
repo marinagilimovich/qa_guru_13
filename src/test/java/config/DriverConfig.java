@@ -6,9 +6,9 @@ import static org.aeonbits.owner.Config.LoadType.MERGE;
 
 @Config.LoadPolicy(MERGE)
 @Config.Sources({"system:properties",
-        "classpath:${webdriver}.driver.properties",
+        "classpath:${driver}.driver.properties",
         "classpath:local.driver.properties"})
-public interface WebDriverConfig extends Config {
+public interface DriverConfig extends Config {
 
     @Key("driver.remote")
     boolean isRemote();
